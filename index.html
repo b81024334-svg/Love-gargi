@@ -8,79 +8,52 @@
 <style>
   body {
     margin: 0;
+    background: black;
     height: 100vh;
-    background: radial-gradient(circle at center, #000 60%, #050505 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    font-family: Arial, sans-serif;
   }
 
-  /* Star background */
-  .stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: transparent url('https://i.imgur.com/9yG9s1n.png') repeat;
-    animation: moveStars 120s linear infinite;
-    opacity: 0.6;
+  svg {
+    width: 90vw;
+    height: 90vh;
   }
 
-  @keyframes moveStars {
-    from { background-position: 0 0; }
-    to { background-position: -10000px 5000px; }
-  }
-
-  /* Floating text */
-  #ui .love {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    --i: 1;
-  }
-
-  .love_word {
-    color: #ffd83b;
-    font-size: 2rem;
-    text-shadow: 0 0 20px #fff78a;
+  text {
+    fill: hotpink;
+    font-size: 28px;
     letter-spacing: 2px;
-    animation: float 6s ease-in-out infinite;
-    animation-delay: calc(var(--i) * 0.1s);
-    white-space: nowrap;
-  }
-
-  @keyframes float {
-    0% { transform: translateY(0); opacity: 0.7; }
-    50% { transform: translateY(-40px); opacity: 1; }
-    100% { transform: translateY(0); opacity: 0.7; }
+    text-shadow: 0 0 10px deeppink;
   }
 </style>
 </head>
 
 <body>
-<div class="stars"></div>
-<div id="ui"></div>
 
-<audio autoplay loop>
-  <source src="https://cdn.pixabay.com/download/audio/2023/04/19/audio_43f78557f2.mp3" type="audio/mpeg">
-</audio>
+<svg viewBox="0 0 600 600">
+  <!-- Heart path -->
+  <path id="heartPath"
+    d="M300 520
+       C50 350, 150 80, 300 200
+       C450 80, 550 350, 300 520"
+    fill="none" />
 
-<script>
-  const ui = document.getElementById('ui');
-  const N = 30;
-
-  for (let i = 1; i <= N; i++) {
-    const love = document.createElement('div');
-    love.className = 'love';
-    love.style.setProperty('--i', i);
-
-    const word = document.createElement('div');
-    word.className = 'love_word';
-    word.textContent = 'I love you, Gargi ❤️';
-
-    love.appendChild(word);
-    ui.appendChild(love);
-  }
-</script>
+  <!-- Moving text -->
+  <text>
+    <textPath href="#heartPath" startOffset="0%">
+      I love you Gargi ❤️ I love you Gargi ❤️ I love you Gargi ❤️
+      <animate
+        attributeName="startOffset"
+        from="0%"
+        to="100%"
+        dur="8s"
+        repeatCount="indefinite" />
+    </textPath>
+  </text>
+</svg>
 
 </body>
 </html>
