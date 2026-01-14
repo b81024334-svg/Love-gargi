@@ -1,59 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>I love you, Gargi ❤️</title>
-
-<style>
-  body {
-    margin: 0;
-    background: black;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-  }
-
-  svg {
-    width: 90vw;
-    height: 90vh;
-  }
-
-  text {
-    fill: hotpink;
-    font-size: 28px;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px deeppink;
-  }
-</style>
-</head>
-
-<body>
-
-<svg viewBox="0 0 600 600">
+<svg viewBox="0 0 400 400">
   <!-- Heart path -->
   <path id="heartPath"
-    d="M300 520
-       C50 350, 150 80, 300 200
-       C450 80, 550 350, 300 520"
-    fill="none" />
-
-  <!-- Moving text -->
+        d="M200,200 
+           C200,100 100,100 100,200
+           C100,300 200,300 200,200
+           C200,300 300,300 300,200
+           C300,100 200,100 200,200"
+        fill="none" stroke="none"/>
+  
   <text>
     <textPath href="#heartPath" startOffset="0%">
       I love you Gargi ❤️ I love you Gargi ❤️ I love you Gargi ❤️
-      <animate
-        attributeName="startOffset"
-        from="0%"
-        to="100%"
-        dur="8s"
-        repeatCount="indefinite" />
+      <animate attributeName="startOffset" from="0%" to="100%" dur="10s" repeatCount="indefinite"/>
     </textPath>
   </text>
 </svg>
-
-</body>
-</html>
