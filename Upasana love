@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Love for Upasana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff4d8d;
+            --secondary: #9d4edd;
+            --accent: #00bbf9;
+            --glow: #ffb6c1;
+            --dark: #10002b;
+            --light: #fffaf0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a2a 0%, #1a0b2e 30%, #2d1b69 70%, #5a189a 100%);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            cursor: default;
+        }
+
+        /* Cosmic Background */
+        #cosmos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .star.small { width: 1px; height: 1px; }
+        .star.medium { width: 2px; height: 2px; }
+        .star.large { width: 3px; height: 3px; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.2;
+            mix-blend-mode: screen;
+        }
+
+        .nebula-1 {
+            background: var(--primary);
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            left: 10%;
+            animation: floatNebula 40s infinite alternate;
+        }
+
+        .nebula-2 {
+            background: var(--secondary);
+            width: 300px;
+            height: 300px;
+            bottom: 30%;
+            right: 15%;
+            animation: floatNebula 50s infinite alternate-reverse;
+        }
+
+        @keyframes floatNebula {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, -100px) scale(1.2); }
+        }
+
+        /* Aurora Effect */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 77, 141, 0.1) 0%, 
+                rgba(157, 78, 221, 0.1) 25%, 
+                rgba(0, 187, 249, 0.1) 50%, 
+                rgba(255, 182, 193, 0.1) 75%, 
+                rgba(255, 77, 141, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: auroraFlow 20s ease infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        @keyframes auroraFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Navigation */
+        .nav-orbits {
+            position: fixed;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-orbit {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid var(--primary);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-orbit:hover {
+            background: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            transform: scale(1.5);
+        }
+
+        .nav-orbit::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .nav-orbit:hover::before {
+            opacity: 1;
+        }
+
+        /* Main Container */
+        .cosmic-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 150px;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cosmic-title {
+            font-family: 'Cinzel', serif;
+            font-size: 8rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 30px;
+            position: relative;
+            text-shadow: 0 0 100px rgba(255, 77, 141, 0.5);
+            animation: titleGlow 5s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 50px rgba(255, 77, 141, 0.5); }
+            100% { text-shadow: 0 0 150px rgba(255, 77, 141, 0.8), 0 0 200px rgba(157, 78, 221, 0.6); }
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--glow);
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: subtitleFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes subtitleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Cosmic Love Meter */
+        .love-meter {
+            width: 500px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 50px auto;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 77, 141, 0.3);
+        }
+
+        .love-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            width: 99.9%;
+            animation: lovePulse 3s infinite alternate;
+            position: relative;
+        }
+
+        @keyframes lovePulse {
+            0% { width: 99%; box-shadow: 0 0 20px var(--primary); }
+            100% { width: 100%; box-shadow: 0 0 40px var(--primary); }
+        }
+
+        .love-meter-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: white;
+            font-weight: bold;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Galaxy Section */
+        .galaxy {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 100px auto;
+            perspective: 1000px;
+        }
+
+        .spiral-arm {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: spinGalaxy 120s infinite linear;
+        }
+
+        .spiral-arm:nth-child(1) {
+            border-color: rgba(255, 77, 141, 0.3);
+            width: 100%;
+            height: 100%;
+            animation-duration: 120s;
+        }
+
+        .spiral-arm:nth-child(2) {
+            border-color: rgba(157, 78, 221, 0.3);
+            width: 80%;
+            height: 80%;
+            animation-duration: 100s;
+            animation-direction: reverse;
+        }
+
+        .spiral-arm:nth-child(3) {
+            border-color: rgba(0, 187, 249, 0.3);
+            width: 60%;
+            height: 60%;
+            animation-duration: 80s;
+        }
+
+        @keyframes spinGalaxy {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .galaxy-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--primary), var(--secondary));
+            border-radius: 50%;
+            box-shadow: 0 0 100px var(--primary);
+            animation: pulsar 4s infinite alternate;
+        }
+
+        @keyframes pulsar {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 100px var(--primary); }
+            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 200px var(--primary); }
+        }
+
+        .galaxy-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            transform-origin: center;
+            box-shadow: 0 0 10px white;
+        }
+
+        /* Constellation */
+        .constellation {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 100px 0;
+        }
+
+        .star-point {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+        }
+
+        .star-connection {
+            position: absolute;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            transform-origin: left center;
+        }
+
+        .constellation-name {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--glow);
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 0 20px var(--glow);
+        }
+
+        /* Love Messages Portal */
+        .portal-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 100px 0;
+        }
+
+        .portal {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .portal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .portal:hover::before {
+            left: 100%;
+        }
+
+        .portal:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 77, 141, 0.3);
+            border-color: var(--primary);
+        }
+
+        .portal-icon {
+            font-size: 60px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: iconFloat 4s infinite ease-in-out;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .portal-text {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: var(--light);
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Cosmic Cat */
+        .cosmic-cat {
+            position: fixed;
+            bottom: 50px;
+            left: 50px;
+            width: 200px;
+            height: 200px;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .cat-body {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 10px 40px rgba(255, 77, 141, 0.5);
+            animation: catFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes catFloat {
+            0%, 100% { transform: translate(-50%, -50%); }
+            50% { transform: translate(-50%, -60%); }
+        }
+
+        .cat-head {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 90px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+        }
+
+        .cat-ear {
+            position: absolute;
+            top: -20px;
+            width: 40px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cat-ear.left { left: 15px; transform: rotate(-20deg); }
+        .cat-ear.right { right: 15px; transform: rotate(20deg); }
+
+        .cat-eye {
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            overflow: hidden;
+            animation: catBlink 4s infinite;
+        }
+
+        .cat-eye::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .cat-eye.left { left: 25px; }
+        .cat-eye.right { right: 25px; }
+
+        @keyframes catBlink {
+            0%, 45%, 55%, 100% { height: 30px; }
+            50% { height: 5px; }
+        }
+
+        .cat-tail {
+            position: absolute;
+            top: 60%;
+            right: -50px;
+            width: 80px;
+            height: 15px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            border-radius: 10px;
+            transform-origin: left center;
+            animation: tailWave 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes tailWave {
+            0% { transform: rotate(-30deg); }
+            100% { transform: rotate(30deg); }
+        }
+
+        /* Interactive Elements */
+        .cosmic-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 80px 0;
+            flex-wrap: wrap;
+        }
+
+        .cosmic-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255, 77, 141, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cosmic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+
+        .cosmic-button:hover::before {
+            left: 100%;
+        }
+
+        .cosmic-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 50px rgba(255, 77, 141, 0.6);
+            letter-spacing: 3px;
+        }
+
+        /* Star Dust Effect */
+        .star-dust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dust-particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: dustFall linear infinite;
+        }
+
+        @keyframes dustFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Love Black Hole */
+        .black-hole {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            position: relative;
+            border-radius: 50%;
+            background: radial-gradient(circle, #000 0%, #10002b 30%, transparent 70%);
+            box-shadow: 0 0 100px #000, inset 0 0 100px rgba(255, 77, 141, 0.5);
+            animation: blackHoleSpin 20s infinite linear;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes blackHoleSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .black-hole-text {
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--primary);
+            z-index: 2;
+        }
+
+        /* Music Player */
+        .music-orb {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 0 30px rgba(255, 77, 141, 0.5);
+            animation: orbFloat 4s infinite ease-in-out;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .music-orb i {
+            font-size: 24px;
+            color: white;
+        }
+
+        /* Footer */
+        .cosmic-footer {
+            margin-top: 150px;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .footer-title {
+            font-size: 4rem;
+            font-family: 'Dancing Script', cursive;
+            color: var(--glow);
+            margin-bottom: 30px;
+            text-shadow: 0 0 50px var(--glow);
+        }
+
+        .footer-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .cosmic-title { font-size: 6rem; }
+            .galaxy { width: 500px; height: 500px; }
+        }
+
+        @media (max-width: 768px) {
+            .cosmic-title { font-size: 4rem; }
+            .hero-subtitle { font-size: 1.5rem; }
+            .galaxy { width: 300px; height: 300px; }
+            .love-meter { width: 300px; }
+            .cosmic-cat { transform: scale(0.7); left: 20px; bottom: 20px; }
+            .nav-orbits { right: 20px; }
+            .cosmic-buttons { flex-direction: column; align-items: center; }
+            .cosmic-button { width: 90%; justify-content: center; }
+        }
+
+        /* Special Effects Canvas */
+        #effectsCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Typing Effect */
+        .typing-container {
+            min-height: 100px;
+            margin: 50px auto;
+            text-align: center;
+            position: relative;
+        }
+
+        #typed-text {
+            font-size: 2.5rem;
+            color: var(--glow);
+            font-family: 'Dancing Script', cursive;
+            display: inline-block;
+            border-right: 3px solid var(--primary);
+            padding-right: 5px;
+            animation: blinkCursor 0.7s infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background -->
+    <div id="cosmos">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+    </div>
+    
+    <!-- Aurora Effect -->
+    <div class="aurora"></div>
+    
+    <!-- Star Dust -->
+    <div class="star-dust" id="starDust"></div>
+    
+    <!-- Effects Canvas -->
+    <canvas id="effectsCanvas"></canvas>
+    
+    <!-- Navigation Orbits -->
+    <div class="nav-orbits">
+        <div class="nav-orbit" data-tooltip="Love Galaxy" onclick="scrollToSection('galaxy')"></div>
+        <div class="nav-orbit" data-tooltip="Messages" onclick="scrollToSection('portals')"></div>
+        <div class="nav-orbit" data-tooltip="Constellation" onclick="scrollToSection('constellation')"></div>
+        <div class="nav-orbit" data-tooltip="Black Hole" onclick="scrollToSection('blackhole')"></div>
+    </div>
+    
+    <!-- Music Player -->
+    <div class="music-orb" id="musicOrb">
+        <i class="fas fa-play"></i>
+    </div>
+    
+    <!-- Audio -->
+    <audio id="cosmicMusic" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-ethereal-fairy-wing-flaps-298.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Cosmic Cat -->
+    <div class="cosmic-cat" id="cosmicCat">
+        <div class="cat-body"></div>
+        <div class="cat-head">
+            <div class="cat-ear left"></div>
+            <div class="cat-ear right"></div>
+            <div class="cat-eye left"></div>
+            <div class="cat-eye right"></div>
+        </div>
+        <div class="cat-tail"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="cosmic-container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="cosmic-title">Love You Upasana</h1>
+            <p class="hero-subtitle">Across galaxies and through time, my love for you is the only constant in this universe</p>
+            
+            <!-- Love Meter -->
+            <div class="love-meter">
+                <div class="love-fill"></div>
+                <div class="love-meter-text">INFINITE LOVE METER: 99.9%</div>
+            </div>
+            
+            <!-- Typing Effect -->
+            <div class="typing-container">
+                <div id="typed-text"></div>
+            </div>
+        </section>
+        
+        <!-- Galaxy Section -->
+        <section id="galaxy" class="galaxy-section">
+            <div class="galaxy">
+                <div class="spiral-arm"></div>
+                <div class="spiral-arm"></div>
+                <div class="spiral-arm"></div>
+                <div class="galaxy-center"></div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <h2 style="font-size: 3rem; color: var(--glow); margin-bottom: 20px;">Our Love Galaxy</h2>
+                <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto; color: rgba(255, 255, 255, 0.8);">
+                    Every star in this galaxy represents a moment I've thought of you. 
+                    The spirals are the endless paths our love has taken through time.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Love Messages Portal -->
+        <section id="portals" style="margin: 150px 0;">
+            <h2 style="text-align: center; font-size: 3rem; color: var(--glow); margin-bottom: 80px;">Cosmic Love Portals</h2>
+            <div class="portal-container">
+                <div class="portal">
+                    <div class="portal-icon"><i class="fas fa-star-and-crescent"></i></div>
+                    <div class="portal-text">Upasana, you are the supernova that brightened my existence</div>
+                </div>
+                <div class="portal">
+                    <div class="portal-icon"><i class="fas fa-meteor"></i></div>
+                    <div class="portal-text">Like a meteor shower, my love for you is spectacular and endless</div>
+                </div>
+                <div class="portal">
+                    <div class="portal-icon"><i class="fas fa-satellite"></i></div>
+                    <div class="portal-text">You are the gravitational force that keeps my world in orbit</div>
+                </div>
+                <div class="portal">
+                    <div class="portal-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="portal-text">With you, every day feels like exploring new galaxies</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Constellation -->
+        <section id="constellation" class="constellation">
+            <h2 style="text-align: center; font-size: 3rem; color: var(--glow); margin-bottom: 80px;">The Upasana Constellation</h2>
+            <div style="text-align: center; margin-top: 50px;">
+                <div class="constellation-name">UPASANA MAJOR</div>
+            </div>
+        </section>
+        
+        <!-- Interactive Buttons -->
+        <section class="interactive-section">
+            <div class="cosmic-buttons">
+                <button class="cosmic-button" id="createSupernova">
+                    <i class="fas fa-fire"></i>
+                    Create Supernova
+                </button>
+                <button class="cosmic-button" id="shootMeteor">
+                    <i class="fas fa-shooting-star"></i>
+                    Shoot Meteor Shower
+                </button>
+                <button class="cosmic-button" id="wormhole">
+                    <i class="fas fa-circle-notch"></i>
+                    Open Wormhole
+                </button>
+                <button class="cosmic-button" id="timeTravel">
+                    <i class="fas fa-hourglass-half"></i>
+                    Time Travel Together
+                </button>
+            </div>
+        </section>
+        
+        <!-- Black Hole -->
+        <section id="blackhole" style="margin: 150px 0;">
+            <div class="black-hole">
+                <div class="black-hole-text">UPASANA</div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <h2 style="font-size: 3rem; color: var(--glow); margin-bottom: 20px;">The Upasana Singularity</h2>
+                <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto; color: rgba(255, 255, 255, 0.8);">
+                    Like a black hole that warps space and time, your love has completely transformed my universe. 
+                    Once caught in your gravitational pull, escape is impossible—and I never want to.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Cosmic Love Story -->
+        <section style="margin: 150px 0; padding: 60px; background: rgba(255, 255, 255, 0.05); border-radius: 30px; backdrop-filter: blur(10px);">
+            <h2 style="text-align: center; font-size: 3rem; color: var(--glow); margin-bottom: 50px;">Our Cosmic Love Story</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"><i class="fas fa-bigbang"></i></div>
+                    <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 15px;">The Beginning</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Like the Big Bang, our love story began with a cosmic explosion of emotions that created an entire universe of feelings.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; color: var(--secondary); margin-bottom: 20px;"><i class="fas fa-stars"></i></div>
+                    <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 15px;">Star Formation</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">From that initial explosion, stars of beautiful moments began to form, each one brighter than the last.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; color: var(--glow); margin-bottom: 20px;"><i class="fas fa-infinity"></i></div>
+                    <h3 style="color: var(--accent); font-size: 1.8rem; margin-bottom: 15px;">The Future</h3>
+                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6;">Our love will continue expanding like the universe itself—without end, without boundaries, forever.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="cosmic-footer">
+            <h2 class="footer-title">Upasana</h2>
+            <p class="footer-subtitle">
+                In the vast, cold emptiness of space, your love is the warmth that gives meaning to my existence. 
+                Across light-years and through wormholes, my heart will always find its way back to you.
+            </p>
+            <div style="margin-top: 50px; font-size: 1.2rem; color: rgba(255, 255, 255, 0.6);">
+                This cosmic love was coded with stardust and dreams • Eternally yours
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Initialize variables
+        const canvas = document.getElementById('effectsCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+        
+        // Set canvas size
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Create stars for cosmic background
+        function createStars() {
+            const cosmos = document.getElementById('cosmos');
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random();
+                if (size < 0.3) star.classList.add('small');
+                else if (size < 0.6) star.classList.add('medium');
+                else star.classList.add('large');
+                
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                cosmos.appendChild(star);
+            }
+        }
+        
+        // Create star dust
+        function createStarDust() {
+            const container = document.getElementById('starDust');
+            for (let i = 0; i; i < 100; i++) {
+                const dust = document.createElement('div');
+                dust.classList.add('dust-particle');
+                dust.style.left = Math.random() * 100 + 'vw';
+                dust.style.width = (Math.random() * 3 + 1) + 'px';
+                dust.style.height = dust.style.width;
+                dust.style.animationDuration = (10 + Math.random() * 20) + 's';
+                dust.style.animationDelay = Math.random() * 10 + 's';
+                dust.style.background = `hsl(${Math.random() * 30 + 330}, 100%, ${Math.random() * 50 + 50}%)`;
+                container.appendChild(dust);
+            }
+        }
+        
+        // Create constellation
+        function createConstellation() {
+            const container = document.querySelector('.constellation');
+            const starCount = 15;
+            const stars = [];
+            
+            // Create star points
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star-point');
+                const x = Math.random() * 80 + 10; // 10% to 90%
+                const y = Math.random() * 80 + 10;
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                stars.push({ x, y, element: star });
+                container.appendChild(star);
+            }
+            
+            // Create connections (simplified constellation shape)
+            const connections = [
+                [0, 1], [1, 2], [2, 3], [3, 4],
+                [4, 5], [5, 6], [6, 7], [7, 8],
+                [8, 9], [9, 10], [10, 11], [11, 12],
+                [12, 13], [13, 14]
+            ];
+            
+            connections.forEach(([i, j]) => {
+                if (stars[i] && stars[j]) {
+                    const star1 = stars[i];
+                    const star2 = stars[j];
+                    
+                    const dx = star2.x - star1.x;
+                    const dy = star2.y - star1.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    const connection = document.createElement('div');
+                    connection.classList.add('star-connection');
+                    connection.style.left = star1.x + '%';
+                    connection.style.top = star1.y + '%';
+                    connection.style.width = distance + '%';
+                    connection.style.transform = `rotate(${angle}deg)`;
+                    
+                    container.appendChild(connection);
+                }
+            });
+        }
+        
+        // Typing effect
+        const typedTextElement = document.getElementById('typed-text');
+        const messages = [
+            "My love for you spans galaxies...",
+            "You are my cosmic constant...",
+            "Together, we're a supernova of love...",
+            "Infinite love for my Upasana...",
+            "Across time and space, I love you..."
+        ];
+        
+        let messageIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeEffect() {
+            const currentMessage = messages[messageIndex];
+            
+            if (!isDeleting && charIndex < currentMessage.length) {
+                typedTextElement.textContent = currentMessage.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(typeEffect, 50);
+            } else if (isDeleting && charIndex > 0) {
+                typedTextElement.textContent = currentMessage.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeEffect, 30);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    messageIndex = (messageIndex + 1) % messages.length;
+                }
+                setTimeout(typeEffect, 1500);
+            }
+        }
+        
+        // Particle system for canvas
+        class Particle {
+            constructor(x, y, color, size, velocity) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = size;
+                this.velocity = velocity;
+                this.alpha = 1;
+                this.gravity = 0.01;
+                this.friction = 0.98;
+            }
+            
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+            
+            update() {
+                this.draw();
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+            }
+        }
+        
+        // Interactive effects
+        function createSupernova() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const particleCount = 500;
+            const colors = ['#ff4d8d', '#9d4edd', '#00bbf9', '#ffb6c1'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 3 + 1;
+                const speed = Math.random() * 5 + 2;
+                const angle = Math.random() * Math.PI * 2;
+                
+                particles.push(new Particle(
+                    centerX, centerY,
+                    color, size,
+                    {
+                        x: Math.cos(angle) * speed,
+                        y: Math.sin(angle) * speed
+                    }
+                ));
+            }
+            
+            // Play sound effect
+            playSound('explosion');
+        }
+        
+        function shootMeteorShower() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const startX = Math.random() * canvas.width;
+                    const meteor = {
+                        x: startX,
+                        y: -50,
+                        size: Math.random() * 5 + 3,
+                        speed: Math.random() * 10 + 5,
+                        color: ['#ff4d8d', '#9d4edd', '#00bbf9'][Math.floor(Math.random() * 3)]
+                    };
+                    
+                    const meteorInterval = setInterval(() => {
+                        meteor.y += meteor.speed;
+                        meteor.x += Math.sin(meteor.y * 0.01) * 2;
+                        
+                        // Draw meteor
+                        ctx.beginPath();
+                        ctx.arc(meteor.x, meteor.y, meteor.size, 0, Math.PI * 2);
+                        ctx.fillStyle = meteor.color;
+                        ctx.fill();
+                        
+                        // Draw trail
+                        ctx.beginPath();
+                        ctx.moveTo(meteor.x, meteor.y);
+                        ctx.lineTo(meteor.x - 20, meteor.y - 10);
+                        ctx.strokeStyle = meteor.color;
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        
+                        if (meteor.y > canvas.height + 50) {
+                            clearInterval(meteorInterval);
+                        }
+                    }, 30);
+                }, i * 300);
+            }
+            
+            playSound('shooting');
+        }
+        
+        function createWormhole() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxRadius = 300;
+            
+            let radius = 10;
+            const wormholeInterval = setInterval(() => {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `hsl(${radius % 360}, 100%, 50%)`;
+                ctx.lineWidth = 5;
+                ctx.stroke();
+                
+                radius += 5;
+                
+                if (radius > maxRadius) {
+                    clearInterval(wormholeInterval);
+                    // Suck particles into wormhole
+                    particles.forEach(particle => {
+                        const dx = particle.x - centerX;
+                        const dy = particle.y - centerY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < maxRadius) {
+                            particle.velocity.x = -dx / distance * 5;
+                            particle.velocity.y = -dy / distance * 5;
+                        }
+                    });
+                }
+            }, 50);
+            
+            playSound('wormhole');
+        }
+        
+        function timeTravelEffect() {
+            document.body.style.animation = 'none';
+            setTimeout(() => {
+                document.body.style.animation = 'auroraFlow 20s ease infinite';
+            }, 10);
+            
+            // Create time warp particles
+            for (let i = 0; i < 200; i++) {
+                const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                const size = Math.random() * 4 + 1;
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                
+                particles.push(new Particle(
+                    x, y,
+                    color, size,
+                    {
+                        x: (Math.random() - 0.5) * 10,
+                        y: (Math.random() - 0.5) * 10
+                    }
+                ));
+            }
+            
+            playSound('timewarp');
+        }
+        
+        // Sound effects using Web Audio API
+        function playSound(type) {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            
+            if (type === 'explosion') {
+                // Create explosion sound
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(100, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(20, audioContext.currentTime + 1);
+                
+                oscillator.type = 'sawtooth';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 1);
+            }
+            // Add more sound effects as needed
+        }
+        
+        // Animation loop for canvas
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Update and draw particles
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+        
+        // Music player
+        const musicOrb = document.getElementById('musicOrb');
+        const cosmicMusic = document.getElementById('cosmicMusic');
+        let isPlaying = false;
+        
+        musicOrb.addEventListener('click', () => {
+            if (isPlaying) {
+                cosmicMusic.pause();
+                musicOrb.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                cosmicMusic.play();
+                musicOrb.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Cosmic cat interaction
+        const cosmicCat = document.getElementById('cosmicCat');
+        cosmicCat.addEventListener('click', () => {
+            // Create cat particles
+            for (let i = 0; i < 30; i++) {
+                const color = `hsl(${Math.random() * 30 + 330}, 100%, 70%)`;
+                const size = Math.random() * 4 + 1;
+                const rect = cosmicCat.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                particles.push(new Particle(
+                    x, y,
+                    color, size,
+                    {
+                        x: (Math.random() - 0.5) * 8,
+                        y: (Math.random() - 0.5) * 8
+                    }
+                ));
+            }
+            
+            // Meow effect
+            const meow = document.createElement('div');
+            meow.textContent = 'Meow! ✨';
+            meow.style.position = 'fixed';
+            meow.style.left = cosmicCat.offsetLeft + 'px';
+            meow.style.top = cosmicCat.offsetTop - 50 + 'px';
+            meow.style.color = '#ff4d8d';
+            meow.style.fontSize = '1.5rem';
+            meow.style.fontWeight = 'bold';
+            meow.style.fontFamily = "'Dancing Script', cursive";
+            meow.style.zIndex = '1000';
+            meow.style.pointerEvents = 'none';
+            document.body.appendChild(meow);
+            
+            setTimeout(() => {
+                meow.remove();
+            }, 2000);
+        });
+        
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Button event listeners
+        document.getElementById('createSupernova').addEventListener('click', createSupernova);
+        document.getElementById('shootMeteor').addEventListener('click', shootMeteorShower);
+        document.getElementById('wormhole').addEventListener('click', createWormhole);
+        document.getElementById('timeTravel').addEventListener('click', timeTravelEffect);
+        
+        // Mouse tracking for interactive effects
+        canvas.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+            
+            // Create particles at mouse position
+            if (Math.random() > 0.7) {
+                const color = `hsl(${Math.random() * 60 + 300}, 100%, 70%)`;
+                particles.push(new Particle(
+                    mouse.x, mouse.y,
+                    color,
+                    Math.random() * 2 + 1,
+                    {
+                        x: (Math.random() - 0.5) * 2,
+                        y: (Math.random() - 0.5) * 2
+                    }
+                ));
+            }
+        });
+        
+        // Initialize everything
+        window.addEventListener('load', () => {
+            createStars();
+            createStarDust();
+            createConstellation();
+            typeEffect();
+            animate();
+            
+            // Start with gentle particles
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle(
+                    Math.random() * canvas.width,
+                    Math.random() * canvas.height,
+                    `hsl(${Math.random() * 60 + 300}, 100%, 70%)`,
+                    Math.random() * 2 + 1,
+                    {
+                        x: (Math.random() - 0.5) * 0.5,
+                        y: (Math.random() - 0.5) * 0.5
+                    }
+                ));
+            }
+            
+            // Auto-play music after a delay
+            setTimeout(() => {
+                cosmicMusic.play().catch(e => console.log("Auto-play prevented"));
+                isPlaying = true;
+                musicOrb.innerHTML = '<i class="fas fa-pause"></i>';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
