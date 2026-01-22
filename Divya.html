@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Lovely Divya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #5a3d5c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            min-height: 85vh;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            padding-bottom: 80px;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            border-radius: 0 0 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 0px #ff4081;
+            margin: 5px 0;
+            letter-spacing: 1px;
+        }
+        
+        .content-page {
+            padding: 25px 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .content-page.active {
+            display: flex;
+        }
+        
+        .page-title {
+            color: #ff4081;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            border-radius: 3px;
+        }
+        
+        .message {
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            background: rgba(255, 182, 193, 0.15);
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4081;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-heart {
+            background: linear-gradient(to right, #ff4081, #ff758c);
+            color: white;
+        }
+        
+        .btn-flower {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            color: white;
+        }
+        
+        .btn-clear {
+            background: linear-gradient(to right, #2196F3, #03A9F4);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .spawn-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .heart, .flower {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .heart {
+            color: #ff4081;
+            font-size: 24px;
+        }
+        
+        .flower {
+            color: #FF9800;
+            font-size: 28px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            z-index: 10;
+        }
+        
+        .nav-btn {
+            padding: 12px 0;
+            width: 120px;
+            margin: 0 10px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .page-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .lovely-list {
+            text-align: left;
+            margin-top: 15px;
+            width: 100%;
+        }
+        
+        .lovely-list li {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .lovely-list li:before {
+            content: '❤️';
+            position: absolute;
+            left: -15px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .gallery-item {
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 182, 193, 0.3);
+        }
+        
+        .gallery-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ff4081;
+        }
+        
+        footer {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(90, 61, 92, 0.7);
+            padding: 10px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .floating-element {
+            position: absolute;
+            animation: float 5s ease-in-out infinite;
+            opacity: 0.7;
+            z-index: 0;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                min-height: 80vh;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .name {
+                font-size: 2.2rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+            }
+        }
+        
+        /* Heartbeat animation for special message */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1.5s infinite;
+            color: #ff4081;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>For My Lovely</h1>
+            <div class="name">DIVYA</div>
+            <p>A special surprise just for you 💖</p>
+            
+            <!-- Floating decorative elements -->
+            <div class="floating-element" style="top: 10px; left: 20px; font-size: 30px;">🌸</div>
+            <div class="floating-element" style="bottom: 10px; right: 30px; font-size: 40px;">💖</div>
+            <div class="floating-element" style="top: 40px; right: 40px; font-size: 25px;">🌷</div>
+        </div>
+        
+        <!-- Spawn Area for hearts and flowers -->
+        <div class="spawn-area" id="spawnArea"></div>
+        
+        <!-- Page 1: Welcome -->
+        <div class="content-page active" id="page1">
+            <h2 class="page-title">Welcome, Divya! 💕</h2>
+            <div class="message">
+                <p>Hello my lovely Divya! This is a little something special I made just for you. You can create beautiful hearts and flowers with the buttons below. I hope this brings a smile to your face! 💖</p>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-heart" id="spawnHeart">
+                    <i class="fas fa-heart"></i> Spawn Heart
+                </button>
+                <button class="btn btn-flower" id="spawnFlower">
+                    <i class="fas fa-seedling"></i> Spawn Flower
+                </button>
+                <button class="btn btn-clear" id="clearAll">
+                    <i class="fas fa-broom"></i> Clear All
+                </button>
+            </div>
+            
+            <div class="message">
+                <p>Tap the buttons to fill the screen with lovely hearts and flowers! Each one is a little reminder of how special you are. <span class="heartbeat">❤️</span></p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-icon">💝</div>
+                    <p>Special Love</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🌹</div>
+                    <p>Beautiful Roses</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">✨</div>
+                    <p>Sparkling Joy</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🥰</div>
+                    <p>Lovely Smiles</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Page 2: Why You're Special -->
+        <div class="content-page" id="page2">
+            <h2 class="page-title">Why You're Special 🌟</h2>
+            <div class="message">
+                <p>Divya, you're an amazing person who brings so much light into the world. Here are just a few reasons why you're so special:</p>
+            </div>
+            
+            <ul class="lovely-list">
+                <li>Your smile can brighten anyone's day</li>
+                <li>You have a heart full of kindness and compassion</li>
+                <li>Your positive energy is contagious</li>
+                <li>You make ordinary moments feel magical</li>
+                <li>Your presence makes everything better</li>
+                <li>You have a unique and beautiful spirit</li>
+            </ul>
+            
+            <div class="controls">
+                <button class="btn btn-heart" id="spawnHeart2">
+                    <i class="fas fa-heart"></i> Send Love
+                </button>
+                <button class="btn btn-flower" id="spawnFlower2">
+                    <i class="fas fa-spa"></i> Send Flowers
+                </button>
+            </div>
+            
+            <div class="message">
+                <p>Remember that you are loved, appreciated, and truly one of a kind. Never forget how amazing you are! 💫</p>
+            </div>
+        </div>
+        
+        <!-- Page 3: Sweet Messages -->
+        <div class="content-page" id="page3">
+            <h2 class="page-title">Sweet Messages for You 🍬</h2>
+            <div class="message">
+                <p>Just a little collection of sweet thoughts for my lovely Divya:</p>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-icon">💌</div>
+                    <p>You make my heart smile</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🌼</div>
+                    <p>You bloom beautifully</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🌈</div>
+                    <p>You add color to life</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-icon">🌠</div>
+                    <p>You're a shining star</p>
+                </div>
+            </div>
+            
+            <div class="message">
+                <p>Every day with you is a blessing. I hope this little surprise makes you as happy as you make others. You deserve all the love and happiness in the world! 💖</p>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-heart" id="spawnHeart3">
+                    <i class="fas fa-heartbeat"></i> Heartbeat
+                </button>
+                <button class="btn btn-flower" id="spawnFlower3">
+                    <i class="fas fa-leaf"></i> Garden
+                </button>
+                <button class="btn btn-clear" id="clearAll2">
+                    <i class="fas fa-cloud-sun"></i> Clear Sky
+                </button>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn">
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        
+        <!-- Page Indicator -->
+        <div class="page-indicator">
+            <div class="dot active" data-page="0"></div>
+            <div class="dot" data-page="1"></div>
+            <div class="dot" data-page="2"></div>
+        </div>
+    </div>
+    
+    <footer>
+        Made with <span style="color:#ff4081;">❤️</span> for Divya | A lovely surprise
+    </footer>
+
+    <script>
+        // Current page tracking
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.content-page');
+        const dots = document.querySelectorAll('.dot');
+        const totalPages = pages.length;
+        
+        // Spawn area
+        const spawnArea = document.getElementById('spawnArea');
+        
+        // Page navigation
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentPage < totalPages - 1) {
+                changePage(currentPage + 1);
+            }
+        });
+        
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentPage > 0) {
+                changePage(currentPage - 1);
+            }
+        });
+        
+        // Dot navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const pageIndex = parseInt(dot.getAttribute('data-page'));
+                changePage(pageIndex);
+            });
+        });
+        
+        // Change page function
+        function changePage(pageIndex) {
+            // Hide current page
+            pages[currentPage].classList.remove('active');
+            dots[currentPage].classList.remove('active');
+            
+            // Show new page
+            currentPage = pageIndex;
+            pages[currentPage].classList.add('active');
+            dots[currentPage].classList.add('active');
+            
+            // Update button states
+            document.getElementById('prevBtn').disabled = (currentPage === 0);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages - 1);
+        }
+        
+        // Function to spawn hearts
+        function spawnHeart(page = 'all') {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Random position
+            const xPos = Math.random() * 100;
+            const size = 20 + Math.random() * 30;
+            const duration = 3 + Math.random() * 4;
+            const rotation = Math.random() * 360;
+            
+            // Apply styles
+            heart.style.left = `${xPos}%`;
+            heart.style.top = '-50px';
+            heart.style.fontSize = `${size}px`;
+            heart.style.animation = `fall ${duration}s linear forwards`;
+            heart.style.transform = `rotate(${rotation}deg)`;
+            
+            // Create falling animation
+            const keyframes = `
+                @keyframes fall {
+                    0% {
+                        top: -50px;
+                        opacity: 1;
+                        transform: rotate(${rotation}deg);
+                    }
+                    100% {
+                        top: 100%;
+                        opacity: 0;
+                        transform: rotate(${rotation + 360}deg);
+                    }
+                }
+            `;
+            
+            // Add animation style if not already present
+            if (!document.getElementById('fallAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'fallAnimation';
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+            }
+            
+            // Add to spawn area
+            spawnArea.appendChild(heart);
+            
+            // Remove after animation completes
+            setTimeout(() => {
+                if (heart.parentNode === spawnArea) {
+                    spawnArea.removeChild(heart);
+                }
+            }, duration * 1000);
+        }
+        
+        // Function to spawn flowers
+        function spawnFlower(page = 'all') {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            
+            // Random flower type
+            const flowers = ['🌸', '🌺', '🌻', '🌹', '🌷', '💐', '🥀', '🌼'];
+            const randomFlower = flowers[Math.floor(Math.random() * flowers.length)];
+            
+            
